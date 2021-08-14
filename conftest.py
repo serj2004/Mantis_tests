@@ -28,7 +28,7 @@ def app(request, config):
     global fixture
     browser = request.config.getoption("--browser")
     if fixture is None or not fixture.is_valid():
-        fixture = Application(browser=browser, base_url=config['web']["baseUrl"])
+        fixture = Application(browser=browser, config=config)
     return fixture
 
 
@@ -43,19 +43,19 @@ def app(request, config):
 #
 # def install_server_configuration(host, username, password):
 #     with ftputil.FTPHost(host, username, password) as remote:
-#         if remote.path.isfile("config_inc.php.bac"):
-#             remote.remove("config_inc.php.bac")
+#         if remote.path.isfile("config_inc.php.bak"):
+#             remote.remove("config_inc.php.bak")
 #         if remote.path.isfile("config_inc.php"):
-#             remote.rename("config_inc.php", "config_inc.php.bac")
+#             remote.rename("config_inc.php", "config_inc.php.bak")
 #         remote.upload(os.path.join(os.path.dirname(__file__), "resources/config_inc.php"), "config_inc.php")
 #
 #
 # def restore_server_configuration(host, username, password):
 #     with ftputil.FTPHost(host, username, password) as remote:
-#         if remote.path.isfile("config_inc.php.bac"):
+#         if remote.path.isfile("config_inc.php.bak"):
 #             if remote.path.isfile("config_inc.php"):
-#                 remote.remove("config_inc.php.bac")
-#             remote.rename("config_inc.php.bac", "config_inc.php")
+#                 remote.remove("config_inc.php.bak")
+#             remote.rename("config_inc.php.bak", "config_inc.php")
 
 
 @pytest.fixture(scope='session', autouse=True)
