@@ -20,6 +20,7 @@ class ProjectHelper:
 
     def delete_project_by_name(self, project_name):
         wd = self.app.wd
+        self.open_manage_page()
         wd.find_element_by_link_text("%s" % project_name).click()
         wd.find_element_by_xpath("//div[@class='border center']//form[@method='post']//input[@type='submit']").click()
         wd.find_element_by_xpath("//div[@align='center']//form[@method='post']//input[@type='submit']").click()
